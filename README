@@ -1,0 +1,10 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=1330
+
+Help file for XHTML 1.0 Strict
+
+You will find there 
+- description of tag, 
+- tags allowed inside of given tag, 
+- list of attributes,
+- description of attributes,
+- WAI guidelines for each tag

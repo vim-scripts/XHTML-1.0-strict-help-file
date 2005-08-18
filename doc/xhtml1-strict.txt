@@ -1,0 +1,1529 @@
+*xhtml1-strict.txt* XHTML 1.0 Strict           Last change: 18 Aug 2005
+
+   XHTML 1.0 (tm) The Extensible HyperText Markup Language (Second Edition)
+
+				 prepared by
+			      Mikolaj Machowski
+			     mikmach AT wp DOT pl
+
+Character mnemonic entities         |character-mnemonic-entities|
+Imported Names                      |imported-names|
+Generic Attributes                  |generic-attributes|
+Content models for exclusions       |content-models-exclusion|
+Document structure                  |document-structure|
+Document head                       |document-head|
+Document body                       |document-body|
+Paragraphs                          |paragraphs|
+Headings                            |heading|
+Lists                               |lists|
+Definition lists                    |definition-lists|
+Horizontal Rule                     |horizontal-rule|
+Preformatted text                   |preformatted-text|
+Block-like quotes                   |block-like-quotes|
+Inserted/deleted text               |inserted-deleted-text|
+Anchor element                      |anchor-element|
+Inline elements                     |inline-elements|
+Images                              |images|
+Client-side image maps              |client-side-image-maps|
+Forms                               |forms|
+Tables                              |tables|
+
+=============================================================================
+Character mnemonic entities            *character-mnemonic-entities*
+
+*HTMLlat1*     "xhtml-lat1.ent"
+
+*HTMLsymbol*   "xhtml-symbol.ent"
+
+*HTMLspecial*  "xhtml-special.ent"
+
+=============================================================================
+Imported Names                                  *imported-names*
+
+*ContentType*  "CDATA"
+		media type, as per [RFC2045]
+
+*ContentTypes* "CDATA"
+		comma-separated list of media types, as per [RFC2045]
+
+*Charset*      "CDATA"
+		a character encoding, as per [RFC2045]
+
+*Charsets*     "CDATA"
+		a space separated list of character encodings, as per [RFC2045]
+
+*LanguageCode* "NMTOKEN"
+		a language code, as per [RFC3066]
+
+*Character*    "CDATA"
+		a single character, as per section 2.2 of [XML]
+
+*Number*       "CDATA"
+		one or more digits
+
+*LinkTypes*    "CDATA"
+		space-separated list of link types
+
+*MediaDesc*    "CDATA"
+		single or comma-separated list of media descriptors
+
+*URI*          "CDATA"
+		a Uniform Resource Identifier, see [RFC2396]
+
+*UriList*      "CDATA"
+		a space separated list of Uniform Resource Identifiers
+
+*Datetime*     "CDATA"
+		date and time information. ISO date format
+
+*Script*       "CDATA"
+		script expression
+
+*StyleSheet*   "CDATA"
+		style sheet data
+
+*Text*         "CDATA"
+		used for titles etc.
+
+*Length*       "CDATA"
+		nn for pixels or nn% for percentage length
+
+*MultiLength*  "CDATA"
+		pixel, percentage, or relative
+
+*Pixels*       "CDATA"
+		integer representing length in pixels
+
+These are used for image maps:
+
+*Shape*        "(rect | circle | poly | default)"
+
+*Coords*       "CDATA"
+		comma separated list of lengths
+
+
+=============================================================================
+Generic Attributes                                  *generic-attributes*
+
+*coreattrs*    core attributes common to most elements
+  *id*         ID              document-wide unique id
+  *class*      CDATA           space separated list of classes
+  *style-attr* |StyleSheet|    associated style info
+  *title-attr* |Text|          advisory title/amplification
+
+*i18n*         internationalization attributes
+  *lang*       |LanguageCode|  language code (backwards compatible)
+  *xml:lang*   |LanguageCode|  language code (as per XML 1.0 spec)
+  *dir*        (ltr|rtl)       direction for weak/neutral text
+
+*events*        attributes for common UI events
+  *onclick*     |Script|       a pointer button was clicked
+  *ondblclick*  |Script|       a pointer button was double clicked
+  *onmousedown* |Script|       a pointer button was pressed down
+  *onmouseup*   |Script|       a pointer button was released
+  *onmousemove* |Script|       a pointer was moved onto the element
+  *onmouseout*  |Script|       a pointer was moved away from the element
+  *onkeypress*  |Script|       a key was pressed and released
+  *onkeydown*   |Script|       a key was pressed down
+  *onkeyup*     |Script|       a key was released
+
+*focus*         attributes for elements that can get the focus
+  *accesskey*   |Character|    accessibility key character
+  *tabindex*    |Number|       position in tabbing order
+  *onfocus*     |Script|       the element got the focus
+  *onblur*      |Script|       the element lost the focus
+
+=============================================================================
+Text elements                             *text-elements*
+
+*special.pre*   "|br| | |span| | |bdo| | |map|"
+
+*special*       "|special.pre| | |object| | |img|"
+
+*fontstyle*     "|tt| | |i| | |b| | |big| | |small|"
+
+*phrase*        "|em| | |strong| | |dfn| | |code| | |q| |
+                 |samp| | |kbd| | |var| | |cite| | |abbr| |
+                 |acronym| | |sub| | |sup|"
+
+*inline.forms*  "|input| | |select| | |textarea| | |label| | |button|"
+
+*inline*        "|a| | |special| | |phrase| | |inline.forms| |
+                 |tt| | |i| | |b| | |big| | |small| | |phrase| |
+		 |inline.forms|"
+
+*misc.inline*   "|ins| | |del| | |script|"
+		These can occur at block or inline level
+
+*misc*          "|noscript| | |misc.inline|"
+		These can only occur at block level
+
+*Inline*        "(#PCDATA | |inline| | |misc.inline|)*"
+                |Inline| covers inline or "text-level" elements
+
+=============================================================================
+Block level elements                      *block-level-elements*
+
+|heading|   "|h1| | |h2| | |h3| | |h4| | |h5| | |h6|"
+
+*blocktext* "|pre| | |hr| | |blockquote| | |address|"
+
+*block*     "|p| | |heading| | |div| | |ul| | |ol| | |dl| | 
+             |blocktext| | |fieldset| | |table|"
+
+*Block*     "(|block| | |form| | |misc|)*"
+
+*Flow*      "(#PCDATA | |block| | |form| | |inline| | |misc|)*"
+            |Flow| mixes block and inline and is used for list items etc.
+
+=============================================================================
+Content models for exclusions          *content-models-exclusion*
+
+*a.content*
+  "(#PCDATA | |special| | |tt| | |i| | |b| | |big| | |small| | |phrase| | 
+   |inline.forms| | |misc.inline|)*"
+	|a| elements use |Inline| excluding |a|
+
+*pre.content* 
+  "(#PCDATA | |a| | |tt| | |i| | |b| | |big| | |small| | |phrase| | 
+   |special.pre| | |misc.inline| | |inline.forms|)*"
+	|pre| uses |Inline| excluding |big|, |small|, |sup| or |sup|
+
+*form.content* "(|block| | |misc|)*"
+
+*button.content* "(#PCDATA | |p| | |heading| | |div| | |ul| | |ol| | |dl| | 
+    |blocktext| | |table| | |special| | |fontstyle| | |phrase| | |misc|)*"
+	|button| uses |Flow| but excludes |a|, |form| and form controls
+
+=============================================================================
+Document structure                        *document-structure*
+
+*html* (|head|, |body|)
+
+  The namespace |URI| designates the document profile
+
+Attributes:
+
+  |i18n|
+  |id|        ID             #IMPLIED
+  xmlns       |URI|          #FIXED 'http://www.w3.org/1999/xhtml'
+
+=============================================================================
+Document head                           *document-head*
+------------------------------------------------------------------------
+*head.misc* "(|script| | |style| | |meta| | |link| | |object|)*"
+
+  Content model is |head.misc| combined with a single
+  title and an optional base element in any order.
+
+------------------------------------------------------------------------
+*head* (|head.misc|,
+       ((|title|, |head.misc|, (|base|, |head.misc|)?) |
+       (|base|, |head.misc|, (|title|, |head.misc|))))
+
+Attributes:
+
+  |i18n|
+  |id|          ID             #IMPLIED
+  profile       |URI|          #IMPLIED
+
+The |head| element contains information about the current document, such as
+its title, keywords that may be useful to search engines, and other data that
+is not considered document content. User agents do not generally render
+elements that appear in the |head| as content. They may, however, make
+information in the HEAD available to users through other mechanisms.
+
+------------------------------------------------------------------------
+*title* (#PCDATA)
+
+Attributes:
+
+  |i18n|
+  |id|          ID             #IMPLIED
+
+The |title| element is not considered part of the flow of text.  It should be
+displayed, for example as the page header or window title. Exactly one |title|
+is required per document.
+
+------------------------------------------------------------------------
+*base* EMPTY
+
+  Document base URI.
+
+Attributes:
+
+  href        |URI|          #REQUIRED
+  |id|        ID             #IMPLIED
+  >
+In XHTML, links and references to external images, applets, form-processing
+programs, style sheets, etc. are always specified by a URI. Relative URIs are
+resolved according to a base URI, which may come from a variety of sources.
+The |base| element allows authors to specify a document's base URI explicitly.
+
+When present, the |base| element must appear in the |head| section of an XHTML
+document, before any element that refers to an external source. The path
+information specified by the |base| element only affects URIs in the document
+where the element appears.
+
+------------------------------------------------------------------------
+*meta* EMPTY
+
+  Generic metainformation.
+
+Attributes:
+
+  |i18n|
+  |id|        ID             #IMPLIED
+  http-equiv  CDATA          #IMPLIED
+  name        CDATA          #IMPLIED
+  content     CDATA          #REQUIRED
+  scheme      CDATA          #IMPLIED
+
+The |meta| element can be used to identify properties of a document (e.g.,
+author, expiration date, a list of key words, etc.) and assign values to those
+properties. This specification does not define a normative set of properties.
+
+------------------------------------------------------------------------
+*link* EMPTY
+
+  Relationship values.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  charset     |Charset|      #IMPLIED
+  href        |URI|          #IMPLIED
+  hreflang    |LanguageCode| #IMPLIED
+  type        |ContentType|  #IMPLIED
+  rel         |LinkTypes|    #IMPLIED
+  rev         |LinkTypes|    #IMPLIED
+  media       |MediaDesc|    #IMPLIED
+ 
+Relationship values can be used in principle:
+
+a) for document specific toolbars/menus when used
+   with the link element in document head e.g.
+   start, contents, previous, next, index, end, help
+b) to link to a separate style sheet (rel="stylesheet")
+c) to make a link to a script (rel="script")
+d) by stylesheets to control how collections of
+   html nodes are rendered into printed documents
+e) to make a link to a printable version of this document
+   e.g. a PostScript or PDF version (rel="alternate" media="print")
+
+------------------------------------------------------------------------
+*style* (#PCDATA)
+
+  Style info, which may include CDATA sections.
+
+Attributes:
+
+  |i18n|
+  |id|        ID             #IMPLIED
+  type        |ContentType|  #REQUIRED
+  media       |MediaDesc|    #IMPLIED
+  title       |Text|         #IMPLIED
+  xml:space   (preserve)     #FIXED 'preserve'
+  >
+The |style| element allows authors to put style sheet rules in the head of the
+document. XHTML permits any number of  |style| elements in the |head| section
+of a document.
+
+------------------------------------------------------------------------
+*script* (#PCDATA)
+
+  Script statements, which may include CDATA sections
+
+Attributes:
+
+  |id|        ID             #IMPLIED
+  charset     |Charset|      #IMPLIED
+  type        |ContentType|  #REQUIRED
+  src         |URI|          #IMPLIED
+  defer       (defer)        #IMPLIED
+  xml:space   (preserve)     #FIXED 'preserve'
+  >
+------------------------------------------------------------------------
+*noscript* (|block| | |form| | |misc|)*
+
+  Alternate content container for non script-based rendering
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  >
+The |noscript| element allows authors to provide alternate content when
+a script is not executed. The content of a |noscript| element should only be
+rendered by a script-aware user agent in the following cases: 
+
+- The user agent is configured not to evaluate scripts.
+- The user agent doesn't support a scripting language invoked by a |script|
+  element earlier in the document.
+
+User agents that do not support client-side scripts must render this element's
+contents.
+
+=============================================================================
+Document body                         *document-body*
+
+------------------------------------------------------------------------
+*body* (|block| | |form| | |misc|)*
+
+  The body of a document contains the document's content.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  onload          |Script|   #IMPLIED
+  onunload        |Script|   #IMPLIED
+  >
+------------------------------------------------------------------------
+*div* (#PCDATA | |block| | |form| | |inline| | |misc|)*
+
+  Generic language/style container.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+The |div| and |span| elements, in conjunction with the id and  class
+attributes, offer a generic mechanism for adding structure to documents. These
+elements define content to be inline (|span|) or block-level (|div|) but
+impose no other presentational idioms on the content. Thus, authors may use
+these elements in conjunction with style sheets, the lang attribute, etc., to
+tailor XHTML to their own needs and tastes.
+
+=============================================================================
+Paragraphs                         *paragraphs*
+
+------------------------------------------------------------------------
+*p* (#PCDATA | |inline| | |misc.inline|)*
+
+  The |p| element represents a paragraph. It cannot contain block-level
+  elements (including |p| itself).
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  >
+=============================================================================
+Headings                     *heading*
+
+There are six levels of headings in XHTML with |h1| as the most important and
+|h6| as the least. Visual browsers usually render more important headings in
+larger fonts than less important ones.
+
+A heading element briefly describes the topic of the section it introduces.
+Heading information may be used by user agents, for example, to construct a
+table of contents for a document automatically.
+
+------------------------------------------------------------------------
+*h1* (#PCDATA | |inline| | |misc.inline|)*
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*h2* (#PCDATA | |inline| | |misc.inline|)*
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*h3* (#PCDATA | |inline| | |misc.inline|)*
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*h4* (#PCDATA | |inline| | |misc.inline|)*
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*h5* (#PCDATA | |inline| | |misc.inline|)*
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*h6* (#PCDATA | |inline| | |misc.inline|)*
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+=============================================================================
+Lists               *lists*
+
+Ordered and unordered lists are rendered in an identical manner except that
+visual user agents number ordered list items. User agents may present those
+numbers in a variety of ways. Unordered list items are not numbered.
+
+Both types of lists are made up of sequences of list items defined by the LI
+element.
+
+------------------------------------------------------------------------
+*ul* (li)+
+
+Unordered list.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*ol* (li)+
+
+  Ordered (numbered) list.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*li* (#PCDATA | |block| | |form| | |inline| | |misc|)*
+
+  List item.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+=============================================================================
+Definition lists               *definition-lists*
+
+Definition lists vary only slightly from other types of lists in that list
+items consist of two parts: a term and a description. The term is given by the
+|dt| element and is restricted to inline content. The description is given
+with a |dd| element that contains block-level content.
+
+------------------------------------------------------------------------
+*dl* (dt|dd)+
+
+  Definition lists - dt for term, dd for its definition.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*dt* (#PCDATA | |inline| | |misc.inline|)*
+
+  Term of definition list.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*dd* (#PCDATA | |block| | |form| | |inline| | |misc|)*
+
+  Description of term in definition list.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+=============================================================================
+Address
+------------------------------------------------------------------------
+*address* (#PCDATA | |inline| | |misc.inline|)*
+
+  Information on author.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+The |address| element may be used by authors to supply contact information
+for a document or a major part of a document such as a form. This element
+often appears at the beginning or end of a document.The |address| element may
+be used by authors to supply contact information for a document or a major
+part of a document such as a form. This element often appears at the beginning
+or end of a document.
+
+=============================================================================
+Horizontal Rule                *horizontal-rule*
+------------------------------------------------------------------------
+*hr* EMPTY
+
+  The |hr| element causes a horizontal rule to be rendered by visual user
+  agents.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+=============================================================================
+Preformatted text            *preformatted-text*
+
+The |pre| element tells visual user agents that the enclosed text is
+"preformatted". When handling preformatted text, visual user agents:
+
+- May leave white space intact.
+- May render text with a fixed-pitch font.
+- May disable automatic word wrap.
+- Must not disable bidirectional processing.
+
+Non-visual user agents are not required to respect extra white space in the
+content of a |pre| element.
+
+------------------------------------------------------------------------
+*pre* "(#PCDATA | |a| | |tt| | |i| | |b| | |big| | |small| | |phrase| | 
+       |special.pre| | |misc.inline| | |inline.forms|)*"
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  xml:space (preserve) #FIXED 'preserve'
+
+=============================================================================
+Block-like quotes               *block-like-quotes*
+------------------------------------------------------------------------
+*blockquote* (|block| | |form| | |misc|)*
+
+  Blockquote is for long quotations (block-level content).
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  cite        |URI|          #IMPLIED
+
+=============================================================================
+Inserted/deleted text              *inserted-deleted-text*
+
+  |ins|/|del| are allowed in block and inline content, but its
+  inappropriate to include block content within an ins element
+  occurring in inline content.
+
+|ins| and |del| are used to markup sections of the document that have been
+inserted or deleted with respect to a different version of a document (e.g.,
+in draft legislation where lawmakers need to view the changes).
+
+These two elements are unusual for HTML in that they may serve as either
+block-level or inline elements (but not both). They may contain one or more
+words within a paragraph or contain one or more block-level elements such as
+paragraphs, lists and tables.
+
+------------------------------------------------------------------------
+*ins* (#PCDATA | |block| | |form| | |inline| | |misc|)*
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  cite        |URI|          #IMPLIED
+  datetime    |Datetime|     #IMPLIED
+
+------------------------------------------------------------------------
+*del* (#PCDATA | |block| | |form| | |inline| | |misc|)*
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  cite        |URI|          #IMPLIED
+  datetime    |Datetime|     #IMPLIED
+
+=============================================================================
+Anchor element *anchor-element*
+------------------------------------------------------------------------
+*a* (#PCDATA | |special| | |tt| | |i| | |b| | |big| | |small| | |phrase| | 
+     |inline.forms| | |misc.inline|)*
+
+  Anchors shouldn't be nested.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  |focus|
+  charset     |Charset|      #IMPLIED
+  type        |ContentType|  #IMPLIED
+  name        NMTOKEN        #IMPLIED
+  href        |URI|          #IMPLIED
+  hreflang    |LanguageCode| #IMPLIED
+  rel         |LinkTypes|    #IMPLIED
+  rev         |LinkTypes|    #IMPLIED
+  shape       |Shape|        "rect"
+  coords      |Coords|       #IMPLIED
+
+=============================================================================
+Inline elements *inline-elements*
+------------------------------------------------------------------------
+*span* (#PCDATA | |inline| | |misc.inline|)*
+
+  Generic language/style container.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+The |div| and |span| elements, in conjunction with the id and  class
+attributes, offer a generic mechanism for adding structure to documents. These
+elements define content to be inline (|span|) or block-level (|div|) but
+impose no other presentational idioms on the content. Thus, authors may use
+these elements in conjunction with style sheets, the lang attribute, etc., to
+tailor HTML to their own needs and tastes.
+
+------------------------------------------------------------------------
+*bdo* (#PCDATA | |inline| | |misc.inline|)*
+
+  I18N BiDi over-ride.
+
+Attributes:
+
+  |coreattrs|
+  |events|
+  lang        |LanguageCode| #IMPLIED
+  xml:lang    |LanguageCode| #IMPLIED
+  dir         (ltr|rtl)      #REQUIRED
+
+------------------------------------------------------------------------
+*br* EMPTY
+
+  Forced line break.
+
+Attributes:
+
+  |coreattrs|
+
+------------------------------------------------------------------------
+*em* |Inline|
+
+  Emphasis.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*strong* (#PCDATA | |inline| | |misc.inline|)*
+
+  Strong emphasis
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*dfn* (#PCDATA | |inline| | |misc.inline|)*
+
+  Definitional.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*code* (#PCDATA | |inline| | |misc.inline|)*
+
+  Fragment of computer code.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*samp* (#PCDATA | |inline| | |misc.inline|)*
+
+  Sample output from programs, scripts, etc.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*kbd* (#PCDATA | |inline| | |misc.inline|)*
+
+  Something user would type.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*var* (#PCDATA | |inline| | |misc.inline|)*
+
+  Variable or program argument.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*cite* (#PCDATA | |inline| | |misc.inline|)*
+
+  Citation or reference to other sources.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*abbr* (#PCDATA | |inline| | |misc.inline|)*
+
+  Abbreviation (WWW, HTTP, URI).
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*acronym* (#PCDATA | |inline| | |misc.inline|)*
+
+  Acronym (WAC, radar, etc.).
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*q* (#PCDATA | |inline| | |misc.inline|)*
+
+  Inlined quote.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  cite        |URI|          #IMPLIED
+
+Short quotations (inline content) that don't require paragraph breaks
+
+------------------------------------------------------------------------
+*sub* (#PCDATA | |inline| | |misc.inline|)*
+
+  Subscript.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*sup* (#PCDATA | |inline| | |misc.inline|)*
+
+  Superscript.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*tt* (#PCDATA | |inline| | |misc.inline|)*
+
+  Fixed pitch font (monospace).
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*i* (#PCDATA | |inline| | |misc.inline|)*
+
+  Italic font.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*b* (#PCDATA | |inline| | |misc.inline|)*
+
+  Bold font.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*big* (#PCDATA | |inline| | |misc.inline|)*
+
+  Bigger font.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*small* (#PCDATA | |inline| | |misc.inline|)*
+
+  Smaller font.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+=============================================================================
+Objects
+------------------------------------------------------------------------
+*object* (#PCDATA | |param| | |block| | |form| | |inline| | |misc|)*
+
+  Object is used to embed objects as part of HTML pages.
+  param elements should precede other content. Parameters
+  can also be expressed as attribute/value pairs on the
+  object element itself when brevity is desired.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  declare     (declare)      #IMPLIED
+  classid     |URI|          #IMPLIED
+  codebase    |URI|          #IMPLIED
+  data        |URI|          #IMPLIED
+  type        |ContentType|  #IMPLIED
+  codetype    |ContentType|  #IMPLIED
+  archive     |UriList|      #IMPLIED
+  standby     |Text|         #IMPLIED
+  height      |Length|       #IMPLIED
+  width       |Length|       #IMPLIED
+  usemap      |URI|          #IMPLIED
+  name        NMTOKEN        #IMPLIED
+  tabindex    |Number|       #IMPLIED
+
+Most user agents have built-in mechanisms for rendering common data types such
+as text, GIF images, colors, fonts, and a handful of graphic elements. To
+render data types they don't support natively, user agents generally run
+external applications. The |object| element allows authors to control whether
+data should be rendered externally or by some program, specified by the
+author, that renders the data within the user agent.
+
+------------------------------------------------------------------------
+*param* EMPTY
+
+  |param| is used to supply a named property value.
+  In XML it would seem natural to follow RDF and support an
+  abbreviated syntax where the param elements are replaced
+  by attribute value pairs on the object start tag.
+
+Attributes:
+
+  id          ID             #IMPLIED
+  name        CDATA          #IMPLIED
+  value       CDATA          #IMPLIED
+  valuetype   (data | ref | object) "data"
+  type        |ContentType|  #IMPLIED
+
+=============================================================================
+Images *images*
+------------------------------------------------------------------------
+*img* EMPTY
+
+  To avoid accessibility problems for people who aren't
+  able to see the image, you should provide a text
+  description using the alt and longdesc attributes.
+  In addition, avoid the use of server-side image maps.
+  Note that in Strict there is no name attribute. That
+  is only available in the transitional and frameset.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  src         |URI|          #REQUIRED
+  alt         |Text|         #REQUIRED
+  longdesc    |URI|          #IMPLIED
+  height      |Length|       #IMPLIED
+  width       |Length|       #IMPLIED
+  usemap      |URI|          #IMPLIED
+  ismap       (ismap)        #IMPLIED
+
+  Usemap points to a map element which may be in this document
+  or an external document, although the latter is not widely supported
+
+=============================================================================
+Client-side image maps *client-side-image-maps*
+
+  These can be placed in the same document or grouped in a
+  separate document although this isn't yet widely supported
+
+------------------------------------------------------------------------
+*map* ((|block| | |form| | |misc|)+ | |area|+)
+
+Attributes:
+
+  |i18n|
+  |events|
+  id          ID             #REQUIRED
+  class       CDATA          #IMPLIED
+  style       |StyleSheet|   #IMPLIED
+  title       |Text|         #IMPLIED
+  name        NMTOKEN        #IMPLIED
+
+------------------------------------------------------------------------
+*area* EMPTY
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  |focus|
+  shape       |Shape|        "rect"
+  coords      |Coords|       #IMPLIED
+  href        |URI|          #IMPLIED
+  nohref      (nohref)       #IMPLIED
+  alt         |Text|         #REQUIRED
+
+=============================================================================
+Forms *forms*
+------------------------------------------------------------------------
+*form* "(|block| | |misc|)*"
+
+  A form can contain text and markup (paragraphs, lists, etc.) in addition to
+  form controls. Forms shouldn't be nested.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  action      |URI|          #REQUIRED
+  method      (get|post)     "get"
+  enctype     |ContentType|  "application/x-www-form-urlencoded"
+  onsubmit    |Script|       #IMPLIED
+  onreset     |Script|       #IMPLIED
+  accept      |ContentTypes| #IMPLIED
+  accept-charset |Charsets|  #IMPLIED
+
+------------------------------------------------------------------------
+*label* (#PCDATA | |inline| | |misc.inline|)*
+
+  The |label| element may be used to attach information to controls. Each
+  |label| element is associated with exactly one form control.  Each label
+  must not contain more than ONE field.  Label elements shouldn't be nested.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  for         IDREF          #IMPLIED
+  accesskey   |Character|    #IMPLIED
+  onfocus     |Script|       #IMPLIED
+  onblur      |Script|       #IMPLIED
+
+------------------------------------------------------------------------
+*input* EMPTY
+
+  Form control
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  |focus|
+  type        |InputType|    "text"
+  name        CDATA          #IMPLIED
+  value       CDATA          #IMPLIED
+  checked     (checked)      #IMPLIED
+  disabled    (disabled)     #IMPLIED
+  readonly    (readonly)     #IMPLIED
+  size        CDATA          #IMPLIED
+  maxlength   |Number|       #IMPLIED
+  src         |URI|          #IMPLIED
+  alt         CDATA          #IMPLIED
+  usemap      |URI|          #IMPLIED
+  onselect    |Script|       #IMPLIED
+  onchange    |Script|       #IMPLIED
+  accept      |ContentTypes| #IMPLIED
+
+------------------------------------------------------------------------
+*InputType* (|input-text| | |password| | |checkbox| |
+             |radio| | |submit| | |reset| |
+             |input-file| | |hidden| | |input-image| | |input-button|)
+
+  The name attribute is required for all but submit & reset
+
+*input-text*
+Creates a single-line text input control. 
+
+*password*
+Like "text", but the input text is rendered in such a way as to hide the
+characters (e.g., a series of asterisks). This control type is often used for
+sensitive input such as passwords. Note that the current value is the text
+entered by the user, not the text rendered by the user agent. 
+
+Note: This mechanism affords only light security protection. Although the
+password is masked by user agents from casual observers, it is transmitted to
+the server in clear text, and may be read by anyone with low-level access to
+the network.
+
+*checkbox*
+Creates a checkbox. 
+
+*radio*
+Creates a radio button. 
+
+*submit*
+Creates a submit button. 
+
+*input-image*
+Creates a graphical submit button. The value of the  src attribute specifies
+the |URI| of the image that will decorate the button. For accessibility
+reasons, authors should provide alternate text for the image via the alt
+attribute. 
+
+When a pointing device is used to click on the image, the form is submitted
+and the click coordinates passed to the server. The x value is measured in
+pixels from the left of the image, and the y value in pixels from the top of
+the image. The submitted data includes name.x=x-value and  name.y=y-value
+where "name" is the value of the name attribute, and x-value and y-value are
+the x and y coordinate values, respectively.
+
+If the server takes different actions depending on the location clicked, users
+of non-graphical browsers will be disadvantaged. For this reason, authors
+should consider alternate approaches:
+
+- Use multiple submit buttons (each with its own image) in place of a single
+  graphical submit button. Authors may use style sheets to control the
+  positioning of these buttons.
+- Use a client-side image map together with scripting.
+
+*reset*
+Creates a reset button. 
+
+*input-button*
+Creates a push button. User agents should use the value of the value attribute
+as the button's label. 
+
+*hidden*
+Creates a hidden control. 
+
+*input-file*
+Creates a file select control. User agents may use the value of the value
+attribute as the initial file name.
+
+------------------------------------------------------------------------
+*select* (|optgroup| | |option|)+
+
+  Option selector.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  name        CDATA          #IMPLIED
+  size        |Number|       #IMPLIED
+  multiple    (multiple)     #IMPLIED
+  disabled    (disabled)     #IMPLIED
+  tabindex    |Number|       #IMPLIED
+  onfocus     |Script|       #IMPLIED
+  onblur      |Script|       #IMPLIED
+  onchange    |Script|       #IMPLIED
+
+The |select| element creates a menu. Each choice offered by the menu is
+represented by an |option| element. A |select| element must contain at least
+one |option| element.
+
+------------------------------------------------------------------------
+*optgroup* (|option|)+
+
+  Option group.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  disabled    (disabled)     #IMPLIED
+  label       |Text|         #REQUIRED
+
+The |optgroup| element allows authors to group choices logically. This is
+particularly helpful when the user must choose from a long list of options;
+groups of related choices are easier to grasp and remember than a single long
+list of options. 
+
+------------------------------------------------------------------------
+*option* (#PCDATA)
+
+  Selectable choice.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  selected    (selected)     #IMPLIED
+  disabled    (disabled)     #IMPLIED
+  label       |Text|         #IMPLIED
+  value       CDATA          #IMPLIED
+
+When rendering a menu choice, user agents should use the value of the label
+attribute of the |option| element as the choice. If this attribute is not
+specified, user agents should use the contents of the |option| element.
+
+------------------------------------------------------------------------
+*textarea* (#PCDATA)
+
+  Multi-line text field.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  |focus|
+  name        CDATA          #IMPLIED
+  rows        |Number|       #REQUIRED
+  cols        |Number|       #REQUIRED
+  disabled    (disabled)     #IMPLIED
+  readonly    (readonly)     #IMPLIED
+  onselect    |Script|       #IMPLIED
+  onchange    |Script|       #IMPLIED
+
+The |textarea| element creates a  multi-line text input control. User agents
+should use the contents of this element as the initial value of the control
+and should render this text initially.
+
+------------------------------------------------------------------------
+*fieldset* (#PCDATA | |legend| | |block| | |form| | |inline| | |misc|)*
+
+  The fieldset element is used to group form fields.
+  Only one legend element should occur in the content
+  and if present should only be preceded by whitespace.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+The |fieldset| element allows authors to group thematically related controls
+and labels. Grouping controls makes it easier for users to understand their
+purpose while simultaneously facilitating tabbing navigation for visual user
+agents and speech navigation for speech-oriented user agents. The proper use
+of this element makes documents more accessible.
+
+------------------------------------------------------------------------
+*legend* |Inline|
+
+  Fieldset label.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  accesskey   |Character|    #IMPLIED
+
+The |legend| element allows authors to assign a caption to a  |fieldset.| The
+legend improves accessibility when the  |fieldset| is rendered non-visually.
+
+------------------------------------------------------------------------
+*button* "(#PCDATA | |p| | |heading| | |div| | |ul| | |ol| | |dl| | |table| |
+          |blocktext| | |table| | |special| | |tt| | |i| | |b| | |big| | 
+	  |small| | |phrase| | |misc|)*"
+
+  Push button.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  |focus|
+  name        CDATA          #IMPLIED
+  value       CDATA          #IMPLIED
+  type        (|button| | |submit| | |reset|) "submit"
+  disabled    (disabled)     #IMPLIED
+
+Buttons created with the  |button| element function just like buttons created
+with the |input| element, but they offer richer rendering possibilities: the
+|button| element may have content. For example, a |button| element that
+contains an image functions like and may resemble an |input| element whose
+type is set to "image", but the |button| element type allows content.
+
+=============================================================================
+Tables *tables*
+
+Derived from IETF HTML table standard, see [RFC1942]
+
+*TFrame* "(void | above | below | hsides | lhs | rhs | vsides | box | border)"
+
+  The border attribute sets the thickness of the frame around the
+  table. The default units are screen pixels.
+  
+  The frame attribute specifies which parts of the frame around
+  the table should be rendered. The values are not the same as
+  CALS to avoid a name clash with the valign attribute.
+  The rules attribute defines which rules to draw between cells:
+
+*TRules* "(none | groups | rows | cols | all)"
+
+  If rules is absent then assume:
+  "none" if border is absent or border="0" otherwise "all"
+
+------------------------------------------------------------------------
+*table* 
+  (|caption|?, (|col|* | |colgroup|*), |thead|?, |tfoot|?, (|tbody|+ | |tr|+))
+
+  The |table| element contains all other elements that specify caption, rows,
+  content, and formatting.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  summary     |Text|         #IMPLIED
+  width       |Length|       #IMPLIED
+  border      |Pixels|       #IMPLIED
+  frame       |TFrame|       #IMPLIED
+  rules       |TRules|       #IMPLIED
+  cellspacing |Length|       #IMPLIED
+  cellpadding |Length|       #IMPLIED
+  >
+------------------------------------------------------------------------
+*caption* (#PCDATA | |inline| | |misc.inline|)*
+
+  When present, the |caption| element's text should describe the nature of the
+  table. The |caption| element is only permitted immediately after the |table|
+  start tag. A |table| element may only contain one  |caption| element.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+
+------------------------------------------------------------------------
+*colgroup* (|col|)*
+
+  Colgroup groups a set of col elements. It allows you to group
+  several semantically related columns together.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  span        |Number|       "1"
+  width       |MultiLength|  #IMPLIED
+  align       (left | center | right | justify | char) #IMPLIED
+  char        |Character|    #IMPLIED   [alignment char]
+  charoff     |Length|       #IMPLIED   [offset for alignment char]
+  valign      (top | middle | bottom | baseline) #IMPLIED
+
+The |colgroup| element creates an explicit column group. The number of
+columns in the column group may be specified in two, mutually exclusive
+ways:
+
+- The element's span attribute (default value 1) specifies the number of
+  columns in the group.
+- Each  |col| element in the |colgroup| represents one or more columns in the
+  group.
+
+------------------------------------------------------------------------
+*col* EMPTY
+
+  |col| elements define the alignment properties for cells in
+  one or more columns.
+
+  The width attribute specifies the width of the columns, e.g.
+
+     width=64        width in screen pixels
+     width=0.5*      relative width of 0.5
+
+  The span attribute causes the attributes of one
+  col element to apply to more than one column.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  span        |Number|       "1"
+  width       |MultiLength|  #IMPLIED
+  align       (left | center | right | justify | char) #IMPLIED
+  char        |Character|    #IMPLIED   [alignment char]
+  charoff     |Length|       #IMPLIED   [offset for alignment char]
+  valign      (top | middle | bottom | baseline) #IMPLIED
+
+The |col| element allows authors to group together attribute specifications
+for table columns. The |col| does not group columns together structurally --
+that is the role of the  |colgroup| element.  |col| elements are empty and
+serve only as a support for attributes. They may appear inside or outside an
+explicit column group (i.e., |colgroup| element).
+
+------------------------------------------------------------------------
+*thead*    (|tr|)+
+*tfoot*    (|tr|)+
+*tbody*    (|tr|)+
+*tr*       (|th| | |td|)+
+
+  Use |thead| to duplicate headers when breaking table
+  across page boundaries, or for static headers when
+  tbody sections are rendered in scrolling panel.
+  
+  Use |tfoot| to duplicate footers when breaking table
+  across page boundaries, or for static footers when
+  tbody sections are rendered in scrolling panel.
+  
+  Use multiple |tbody| sections when rules are needed
+  between groups of table rows.
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  align       (left | center | right | justify | char) #IMPLIED
+  char        |Character|    #IMPLIED   [alignment char]
+  charoff     |Length|       #IMPLIED   [offset for alignment char]
+  valign      (top | middle | bottom | baseline) #IMPLIED
+
+Table rows may be grouped into a table head, table foot, and one or more table
+body sections, using the |thead|,  |tfoot| and |tbody| elements, respectively.
+This division enables user agents to support scrolling of table bodies
+independently of the table head and foot. When long tables are printed, the
+table head and foot information may be repeated on each page that contains
+table data.
+
+The table head and table foot should contain information about the table's
+columns. The table body should contain rows of table data.
+
+When present, each |thead|, |tfoot|, and |tbody| contains a row group. Each
+row group must contain at least one row, defined by the |tr| element.
+
+------------------------------------------------------------------------
+*th* (#PCDATA | |block| | |form| | |inline| | |misc|)*
+*td* (#PCDATA | |block| | |form| | |inline| | |misc|)*
+
+  |th| is for headers, |td| for data and for cells acting as both
+
+Attributes:
+
+  |coreattrs|
+  |i18n|
+  |events|
+  abbr        |Text|         #IMPLIED
+  axis        CDATA          #IMPLIED
+  headers     IDREFS         #IMPLIED
+  scope       (row | col | rowgroup | colgroup) #IMPLIED
+  rowspan     |Number|       "1"
+  colspan     |Number|       "1"
+  align       (left | center | right | justify | char) #IMPLIED
+  char        |Character|    #IMPLIED   [alignment char]
+  charoff     |Length|       #IMPLIED   [offset for alignment char]
+  valign      (top | middle | bottom | baseline) #IMPLIED
+
+Table cells may contain two types of information: header information and data.
+This distinction enables user agents to render header and data cells
+distinctly, even in the absence of style sheets. For example, visual user
+agents may present header cell text with a bold font. Speech synthesizers may
+render header information with a distinct voice inflection.
+
+The TH element defines a cell that contains header information. User agents
+have two pieces of header information available: the contents of the |th|
+element and the value of the  abbr attribute. User agents must render either
+the contents of the cell or the value of the abbr attribute. For visual media,
+the latter may be appropriate when there is insufficient space to render the
+full contents of the cell. For non-visual media abbr may be used as an
+abbreviation for table headers when these are rendered along with the contents
+of the cells to which they apply.
+
+The headers and scope attributes also allow authors to help non-visual user
+agents process header information. Please consult the section on labeling
+cells for non-visual user agents for information and examples.
+
+The |td| element defines a cell that contains data.
+
+Cells may be empty (i.e., contain no data).
+
+=============================================================================
+ vim:tw=78:ts=8:ft=help:norl:isk+=.
