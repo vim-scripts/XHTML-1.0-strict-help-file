@@ -147,6 +147,7 @@ Generic Attributes                  *generic-attributes*
   *onmouseup*   |Script|       a pointer button was released
   *onmousemove* |Script|       a pointer was moved onto the element
   *onmouseout*  |Script|       a pointer was moved away from the element
+  *onmouseover* |Script|       a pointer is hovering over element
   *onkeypress*  |Script|       a key was pressed and released
   *onkeydown*   |Script|       a key was pressed down
   *onkeyup*     |Script|       a key was released
@@ -179,8 +180,7 @@ Text elements                       *text-elements*
 *inline.forms*  "|input| | |select| | |textarea| | |label| | |button|"
 
 *inline*        "|a| | |special| | |phrase| | |inline.forms| |
-                 |tt| | |i| | |b| | |big| | |small| | |phrase| |
-		 |inline.forms|"
+                 |tt| | |i| | |b| | |big| | |small|
 
 *misc.inline*   "|ins| | |del| | |script|"
 		These can occur at block or inline level
@@ -1149,6 +1149,10 @@ WCAG:
 
   |wcag3| Specify the expansion of each abbreviation or acronym in a document
           where it first occurs.
+
+Warning:
+
+  No known version (up to 6) of MS Internet Explorer support this tag.
 
 ------------------------------------------------------------------------
 *acronym* (#PCDATA | |inline| | |misc.inline|)*
